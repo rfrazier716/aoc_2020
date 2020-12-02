@@ -12,8 +12,8 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: python -m unittest discover -s ./py/test -p 'test_*.py'
-          name: Test Day 1
+          command: cd py; python -m unittest discover -s ./test -p 'test_*.py'
+          name: Test
 
 workflows:
   main:
