@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2
+from aoc2020 import day1,day2,day3
 
 
 class TestDay1(unittest.TestCase):
@@ -39,6 +39,43 @@ class TestDay2(unittest.TestCase):
         for j,input in enumerate(TestDay2.test_input):
             valid_password = day2.validate_password_TCP(*day2.parse_password_string(input))
             self.assertEqual(valid_password,expected_results[j])
+
+class TestDay3(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        test_input_string ="""..##.......
+#...#...#..
+.#....#..#.
+..#.#...#.#
+.#...##..#.
+..#.##.....
+.#.#.#....#
+.#........#
+#.##...#...
+#...##....#
+.#..#...#.#
+"""
+        cls.test_input = [line.rstrip('\n') for line in test_input_string.splitlines()]
+
+
+    def test_tree_detection(self):
+        # Checks that you get true returned if a pound sign is in the path
+        test_input = TestDay3.test_input
+        map_line = test_input[1]
+
+        tree_detection_functional = True
+        for j,char in enumerate(map_line):
+            tree_detection_functional &= (day3.tree_in_path(map_line,j) == (char == '#'))
+        self.assertTrue(tree_detection_functional)
+        
+    def test_map_navigation(self):
+        # tests that map navication returns the correct number of hits
+        input = TestDay3.test_input
+        slopes_to_test = [[1,1],[3,1],[5,1],[7,1],[1,2]]
+        expected_hits = [2,7,3,4,2]
+        
+        for slope,hits in zip(slopes_to_test,expected_hits):
+            self.assertEqual(day3.traverse_map(input,*slope),hits)
 
 if __name__ == '__main__':
     unittest.main()
