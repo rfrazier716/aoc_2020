@@ -50,7 +50,7 @@ Day | Python    | C++   |
 [py-day1-url]: py/aoc2020/day1.py
 [py-day2-url]: py/aoc2020/day2.py
 [py-day3-url]: py/aoc2020/day3.py
-[py-day4-url]: py/aoc2020/day3.py
+[py-day4-url]: py/aoc2020/day4.py
 
 [cpp-day1-url]: cpp/src/day1.cpp
 
