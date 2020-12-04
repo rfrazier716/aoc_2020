@@ -35,7 +35,6 @@ def passport_from_string(passport_string):
     # return the passport named tutple 
     return Passport(**{substring[:3] : substring[4:] for substring in substrings})
 
-
 def year_field_valid(year_string,year_min,year_max):
     # birth year needs 4 characters and >1920 and <=2002
     correct_characters = (len(year_string) == 4)
@@ -43,7 +42,6 @@ def year_field_valid(year_string,year_min,year_max):
     correct_range = ((year_int >= year_min) and (year_int <= year_max))
     # return if both are accurate
     return correct_characters and correct_range
-
 
 def hair_color_valid(hair_string):
     # a hex code that's 6 digits long
@@ -83,7 +81,6 @@ def validate_passport(passport):
         eye_color_valid(passport.ecl),
         passport_id_valid(passport.pid)
     ])
-
 
 
 if __name__ == '__main__':
