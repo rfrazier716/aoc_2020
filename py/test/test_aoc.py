@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3
+from aoc2020 import day1,day2,day3,day4
 
 
 class TestDay1(unittest.TestCase):
@@ -76,6 +76,58 @@ class TestDay3(unittest.TestCase):
         
         for slope,hits in zip(slopes_to_test,expected_hits):
             self.assertEqual(day3.traverse_map(input,*slope),hits)
+
+
+class TestDay4(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input_string ="""ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
+byr:1937 iyr:2017 cid:147 hgt:183cm
+
+iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
+hcl:#cfa07d byr:1929
+
+hcl:#ae17e1 iyr:2013
+eyr:2024
+ecl:brn pid:760753108 byr:1931
+hgt:179cm
+
+hcl:#cfa07d eyr:2025 pid:166559648
+iyr:2011 ecl:brn hgt:59in"""
+
+    def test_batch_passport_generator(self):
+        # load the test cases
+        splitter = day4.batch_passport_splitter(TestDay4.test_input_string.splitlines())
+        all_passports=list(splitter)
+        
+        self.assertEqual(len(all_passports),2)
+        self.assertEqual(all_passports[0].cid,"147")
+        self.assertEqual(all_passports[1].cid,None)
+
+    def test_passport_validation(self):
+        valid_passport_strings = """pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980
+hcl:#623a2f
+
+eyr:2029 ecl:blu cid:129 byr:1989
+iyr:2014 pid:896056539 hcl:#a97842 hgt:165cm
+
+hcl:#888785
+hgt:164cm byr:2001 iyr:2015 cid:88
+pid:545766238 ecl:hzl
+eyr:2022
+
+iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719"""
+
+        splitter = day4.batch_passport_splitter(valid_passport_strings.splitlines())
+        all_passports=list(splitter)
+        for passport in all_passports:
+            self.assertTrue(day4.year_field_valid(passport.byr,1920,2002))
+            self.assertTrue(day4.year_field_valid(passport.iyr,2010,2020))
+            self.assertTrue(day4.year_field_valid(passport.eyr,2020,2030))
+            self.assertTrue(day4.height_valid(passport.hgt))
+            self.assertTrue(day4.hair_color_valid(passport.hcl))
+            self.assertTrue(day4.eye_color_valid(passport.ecl))
+            self.assertTrue(day4.passport_id_valid(passport.pid))
 
 if __name__ == '__main__':
     unittest.main()
