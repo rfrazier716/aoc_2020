@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4
+from aoc2020 import day1,day2,day3,day4,day5
 
 
 class TestDay1(unittest.TestCase):
@@ -128,6 +128,21 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719"""
             self.assertTrue(day4.hair_color_valid(passport.hcl))
             self.assertTrue(day4.eye_color_valid(passport.ecl))
             self.assertTrue(day4.passport_id_valid(passport.pid))
+
+class TestDay5(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_inputs = ["BFFFBBFRRR",
+            "FFFBBBFRRR",
+            "BBFFBBFRLL"]
+    
+    def test_part_one_examples(self):
+        inputs = TestDay5.test_inputs
+        expected_row_columns = ((70,7),(14,7),(102,4))
+        for test_string,rc in zip(inputs,expected_row_columns):
+            test_r,test_c = day5.bp_string_to_row_col(test_string)
+            self.assertEqual(test_r,rc[0])
+            self.assertEqual(test_c,rc[1])
 
 if __name__ == '__main__':
     unittest.main()

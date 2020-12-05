@@ -44,13 +44,14 @@ Day | Python    | C++   |
 2   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url]  | :x: :x:  |
 3   | [:heavy_check_mark: :heavy_check_mark:][py-day3-url]   | :x: :x:  |
 4   | [:heavy_check_mark: :heavy_check_mark:][py-day4-url]  | :x: :x:  |
-5   | :x: :x:  | :x: :x:  |
+5   | [:heavy_check_mark: :heavy_check_mark:][py-day5-url]  | :x: :x:  |
 
 <!-- Links to Solution Days -->
 [py-day1-url]: py/aoc2020/day1.py
 [py-day2-url]: py/aoc2020/day2.py
 [py-day3-url]: py/aoc2020/day3.py
 [py-day4-url]: py/aoc2020/day4.py
+[py-day5-url]: py/aoc2020/day5.py
 
 [cpp-day1-url]: cpp/src/day1.cpp
 
