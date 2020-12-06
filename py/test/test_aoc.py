@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5
+from aoc2020 import day1,day2,day3,day4,day5,day6
 
 
 class TestDay1(unittest.TestCase):
@@ -143,6 +143,35 @@ class TestDay5(unittest.TestCase):
             test_r,test_c = day5.bp_string_to_row_col(test_string)
             self.assertEqual(test_r,rc[0])
             self.assertEqual(test_c,rc[1])
+
+
+class TestDay6(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        test_string = """abc
+
+a
+b
+c
+
+ab
+ac
+
+a
+a
+a
+a
+
+b"""
+        cls.test_inputs = test_string.splitlines()
+    def test_set_generator(self):
+        inputs = TestDay6.test_inputs
+        str_gen = day6.customs_importer(inputs)
+        ml_strings = list(str_gen)
+        sets = [set(x) for x in ml_strings]
+        expected_lengths = (3,3,3,1,1)
+        for j,this_set in enumerate(sets):
+            self.assertEqual(len(this_set),expected_lengths[j],ml_strings[j])
 
 if __name__ == '__main__':
     unittest.main()
