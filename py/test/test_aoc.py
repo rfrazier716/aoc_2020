@@ -167,7 +167,11 @@ b"""
     def test_set_generator(self):
         inputs = TestDay6.test_inputs
         str_gen = day6.customs_importer(inputs)
-        ml_strings = list(str_gen)
+
+        ml_strings=[]
+        for _,customs_string in str_gen:
+            ml_strings.append(customs_string)
+
         sets = [set(x) for x in ml_strings]
         expected_lengths = (3,3,3,1,1)
         for j,this_set in enumerate(sets):
