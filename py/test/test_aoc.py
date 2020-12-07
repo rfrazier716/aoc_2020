@@ -1,6 +1,9 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7
+import networkx as nx
 
+from pathlib import Path
+test_input_dir = Path(__file__).resolve().parent / "test_inputs"
 
 class TestDay1(unittest.TestCase):
     @classmethod
@@ -176,6 +179,61 @@ b"""
         expected_lengths = (3,3,3,1,1)
         for j,this_set in enumerate(sets):
             self.assertEqual(len(this_set),expected_lengths[j],ml_strings[j])
+
+class TestDay7(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day7_test_input.txt"
+    
+    def test_bag_string_parsing(self):
+        expected_bag_lengths = (3,3,2,3,3,3,3,1,1)
+        with open(TestDay7.test_input) as fii:
+            for line, length in zip(fii,expected_bag_lengths):
+                bags = day7.parse_bag_string(line)
+                self.assertEqual(len(bags),length)
+    
+        # now check that specific bags get generated correctlyl
+        test_string = "shiny cyan bags contain 4 plaid green bags, 4 dim coral bags, 4 dull indigo bags."
+        bags = day7.parse_bag_string(test_string)
+        self.assertEqual(bags[0].color, "shiny cyan")
+        self.assertEqual(bags[1].color, "plaid green")
+        self.assertEqual(bags[2].color, "dim coral")
+        self.assertEqual(bags[3].color, "dull indigo")
+        self.assertEqual(bags[0].quantity, 0)
+        self.assertEqual(bags[1].quantity, 4)
+        self.assertEqual(bags[2].quantity, 4)
+        self.assertEqual(bags[3].quantity, 4)
+
+        # check for a root bag
+        test_string = "dotted black bags contain no other bags."
+        bags = day7.parse_bag_string(test_string)
+        self.assertEqual(bags[0].color, "dotted black")
+
+    def test_graph_generation(self):
+        graph = nx.DiGraph()
+        with open(TestDay7.test_input) as fii:
+            for line in fii:
+                day7.append_bags_to_graph(graph, day7.parse_bag_string(line))
+        print(list(nx.algorithms.dag.topological_sort(graph)))
+
+    def test_part1_soln(self):
+        graph = nx.DiGraph()
+        with open(TestDay7.test_input) as fii:
+            for line in fii:
+                day7.append_bags_to_graph(graph, day7.parse_bag_string(line))
+        self.assertEqual(day7.part_1_solution(graph,"shiny gold"),4)
+
+    def test_part2_soln(self):
+        graph = nx.DiGraph()
+        with open(TestDay7.test_input) as fii:
+            for line in fii:
+                day7.append_bags_to_graph(graph, day7.parse_bag_string(line))
+        self.assertEqual(day7.part_2_solution(graph,'dark olive'), 7)
+        self.assertEqual(day7.part_2_solution(graph,'vibrant plum'), 11)
+        self.assertEqual(day7.part_2_solution(graph,'shiny gold'), 32)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
