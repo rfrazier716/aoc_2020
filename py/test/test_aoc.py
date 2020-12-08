@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8
 import networkx as nx
 
 from pathlib import Path
@@ -232,6 +232,35 @@ class TestDay7(unittest.TestCase):
         self.assertEqual(day7.part_2_solution(graph,'vibrant plum'), 11)
         self.assertEqual(day7.part_2_solution(graph,'shiny gold'), 32)
 
+class TestDay8(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        test_input = test_input_dir / "day8_test_input.txt"
+        cls.memory = {}
+        with open(test_input) as fii:
+            for j,line in enumerate(fii):
+                # make an instruction from the gameboy line
+                cls.memory[j] = day8.parse_input_string(line)
+    
+    def test_memory_loaded(self):
+        memory = TestDay8.memory
+        self.assertEqual(len(memory.values()),9)
+
+    def test_opcodes(self):
+        gameboy = day8.GameBoy(TestDay8.memory)
+        expected_accumulator_values = (0,1,1,2,2,5)
+        for test_val in expected_accumulator_values:
+            gameboy.step() # step an instruction
+            #print(gameboy.accumulator)
+            self.assertEqual(gameboy.accumulator, test_val)
+
+    def test_part1_soln(self):
+        acc_value = day8.part1(TestDay8.memory)
+        self.assertEqual(acc_value, 5)
+
+    def test_part2_soln(self):
+        acc_value = day8.part2(TestDay8.memory)
+        self.assertEqual(acc_value, 8)
 
 
 

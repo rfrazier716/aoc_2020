@@ -47,7 +47,7 @@ Day | Python    | C++   |
 5   | [:heavy_check_mark: :heavy_check_mark:][py-day5-url]  | :x: :x:  |
 6   |  [:heavy_check_mark: :heavy_check_mark:][py-day6-url] | :x: :x:  |
 7   | [:heavy_check_mark: :heavy_check_mark:][py-day7-url]   | :x: :x:  |
-8   | :x: :x:  | :x: :x:  |
+8   | [:heavy_check_mark: :heavy_check_mark:][py-day8-url]   | :x: :x:  |
 9   | :x: :x:  | :x: :x:  |
 10   | :x: :x:  | :x: :x:  |
 
@@ -59,6 +59,7 @@ Day | Python    | C++   |
 [py-day5-url]: py/aoc2020/day5.py
 [py-day6-url]: py/aoc2020/day6.py
 [py-day7-url]: py/aoc2020/day7.py
+[py-day8-url]: py/aoc2020/day8.py
 
 [cpp-day1-url]: cpp/src/day1.cpp
 
