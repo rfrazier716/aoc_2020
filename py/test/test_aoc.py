@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9
 import networkx as nx
 
 from pathlib import Path
@@ -262,7 +262,28 @@ class TestDay8(unittest.TestCase):
         acc_value = day8.part2(TestDay8.memory)
         self.assertEqual(acc_value, 8)
 
+class TestDay9(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day9_test_input.txt"
 
+    def test_xma_validation(self):
+        validation_set = set(range(20))
+        self.assertTrue(day9.xma_valid(validation_set,21))
+        
+        validation_set = set([3,7,8,9,10])
+        self.assertFalse(day9.xma_valid(validation_set,6))
+        self.assertTrue(day9.xma_valid(validation_set,10))
+        self.assertFalse(day9.xma_valid(validation_set,20))
+        self.assertTrue(day9.xma_valid(validation_set,16))
+        self.assertTrue(day9.xma_valid(validation_set,17))
 
+    def test_part1(self):
+        part1_answer = day9.part1_solution(TestDay9.test_input, 5)
+        self.assertEqual(part1_answer, 127)
+
+    def test_part1(self):
+        part2_answer = day9.part2_solution(TestDay9.test_input, 127)
+        self.assertEqual(part2_answer,62)
 if __name__ == '__main__':
     unittest.main()
