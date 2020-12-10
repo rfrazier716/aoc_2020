@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10
 import networkx as nx
 
 from pathlib import Path
@@ -285,5 +285,21 @@ class TestDay9(unittest.TestCase):
     def test_part1(self):
         part2_answer = day9.part2_solution(TestDay9.test_input, 127)
         self.assertEqual(part2_answer,62)
+
+class TestDay10(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input_short = [16, 10, 15, 5, 1, 11, 7, 19, 6, 12, 4]
+        cls.test_input_long = [28, 33, 18, 42, 31, 14, 46, 20, 48, 47, 24, 23, 49,
+             45, 19, 38, 39, 11, 1, 32, 25, 35, 8, 17, 7, 9, 4, 2, 34, 10, 3]
+
+    def test_part_one(self):
+        self.assertEqual(day10.part1(TestDay10.test_input_short),35)
+
+    def test_part_two(self):
+        self.assertEqual(day10.part2(TestDay10.test_input_short),8)
+        self.assertEqual(day10.part2(TestDay10.test_input_long),19208)
+
+
 if __name__ == '__main__':
     unittest.main()

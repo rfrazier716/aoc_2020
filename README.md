@@ -32,24 +32,24 @@
   <h2 align="center">Advent of Code 2020</h2>
 
   <p align="center">
-    Solutions to the <a href="https://adventofcode.com">Advent of Code</a> challenges, written in Python and C++
+    Solutions to the <a href="https://adventofcode.com">Advent of Code</a> challenges, written in Python
     
   </p>
 </p>
 
 
-Day | Python    | C++   | 
-:--:|:---------:|:-----:|
-1   | [:heavy_check_mark: :heavy_check_mark:][py-day1-url] | [:heavy_check_mark: :heavy_check_mark:][cpp-day1-url] |
-2   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url]  | :x: :x:  |
-3   | [:heavy_check_mark: :heavy_check_mark:][py-day3-url]   | :x: :x:  |
-4   | [:heavy_check_mark: :heavy_check_mark:][py-day4-url]  | :x: :x:  |
-5   | [:heavy_check_mark: :heavy_check_mark:][py-day5-url]  | :x: :x:  |
-6   |  [:heavy_check_mark: :heavy_check_mark:][py-day6-url] | :x: :x:  |
-7   | [:heavy_check_mark: :heavy_check_mark:][py-day7-url]   | :x: :x:  |
-8   | [:heavy_check_mark: :heavy_check_mark:][py-day8-url]   | :x: :x:  |
-9   | [:heavy_check_mark: :heavy_check_mark:][py-day9-url]   | :x: :x:  |
-10   | :x: :x:  | :x: :x:  |
+Day | Solutions    | 
+:--:|:---------:|
+1   | [:heavy_check_mark: :heavy_check_mark:][py-day1-url] |
+2   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url] |  
+3   | [:heavy_check_mark: :heavy_check_mark:][py-day3-url] |   
+4   | [:heavy_check_mark: :heavy_check_mark:][py-day4-url] |  
+5   | [:heavy_check_mark: :heavy_check_mark:][py-day5-url] |  
+6   |  [:heavy_check_mark: :heavy_check_mark:][py-day6-url]|  
+7   | [:heavy_check_mark: :heavy_check_mark:][py-day7-url] |   
+8   | [:heavy_check_mark: :heavy_check_mark:][py-day8-url] |   
+9   | [:heavy_check_mark: :heavy_check_mark:][py-day9-url] |   
+10  | [:heavy_check_mark: :heavy_check_mark:][py-day10-url] |
 
 <!-- Links to Solution Days -->
 [py-day1-url]: py/aoc2020/day1.py
@@ -61,6 +61,7 @@ Day | Python    | C++   |
 [py-day7-url]: py/aoc2020/day7.py
 [py-day8-url]: py/aoc2020/day8.py
 [py-day9-url]: py/aoc2020/day9.py
+[py-day10-url]: py/aoc2020/day10.py
 
 [cpp-day1-url]: cpp/src/day1.cpp
 
