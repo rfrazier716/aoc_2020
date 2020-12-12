@@ -1,5 +1,6 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12
+import numpy as np
 import networkx as nx
 
 from pathlib import Path
@@ -299,6 +300,172 @@ class TestDay10(unittest.TestCase):
     def test_part_two(self):
         self.assertEqual(day10.part2(TestDay10.test_input_short),8)
         self.assertEqual(day10.part2(TestDay10.test_input_long),19208)
+
+class TestDay11(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day11_test_input.txt"
+
+    def test_node(self):
+        # make a dummy node
+        node = day11.FerryNode((0,0),True)
+        # set some neighbors
+        for j in range(7):
+            node.neighbors[j] = True
+            self.assertEqual(node.n_neighbors,j+1)
+
+    def test_node_generation(self):
+        nodes = day11.gen_ferry_node_array(TestDay11.test_input)
+        self.assertTrue(len(nodes),10)
+        for row in nodes:
+            self.assertEqual(len(row),10)
+            for node in row:
+                self.assertFalse(node._occupied)
+        
+        # check that the seats are filled accordingly
+        expected_seat_map = (True,False,True,True,True,True,True,False,True,True)
+        for expected,actual in zip(expected_seat_map,nodes[-1]):
+            self.assertEqual(expected,actual.seat)
+      
+    def test_neighbors_right_left(self):
+        nodes = day11.gen_ferry_node_array(TestDay11.test_input)
+        sub_nodes = nodes[:1] # only look at the first row
+        # occupy a couple seats to modify to look like L.#L.L#.LL
+        sub_nodes[0][2].occupy()
+        sub_nodes[0][6].occupy()
+
+        day11.count_LOS_neighbors(sub_nodes)
+        # for neighbors to the right expected output is [T F F F F F T F F F]
+        # for neighbors to the Left expected output is  [F F F T F F F F T F]
+        expected_right_neighbors = (True, *[False for _ in range(4)], True, *[False for _ in range(4)])
+        for j,(expected,actual) in enumerate(zip(expected_right_neighbors, sub_nodes[0])):
+            self.assertEqual(expected,actual.neighbors[4],f"Sample {j} failed\n{actual.neighbors}")
+
+        expected_left_neighbors = (*[False for _ in range(3)], True, *[False for _ in range(4)], True)
+        for j,(expected,actual) in enumerate(zip(expected_left_neighbors, sub_nodes[0])):
+            self.assertEqual(expected,actual.neighbors[3],f"Sample {j} failed\n{actual.neighbors}")
+
+    def test_neighbors_up_down(self):
+        nodes = day11.gen_ferry_node_array(TestDay11.test_input)
+        # occupy left most column with a couple of people
+        # should resemble LL#LLL.#LL
+        nodes[2][0].occupy()
+        nodes[7][0].occupy()
+
+        day11.count_LOS_neighbors(nodes)
+        # for neighbors up expected output is [F F F T F F F F T F]
+        # for neighbors down expected output is [F T F F F T F F F F]
+        expected_up_neighbors = (*[False for _ in range(3)], True, *[False for _ in range(4)], True, False)
+        for j,expected in enumerate(expected_up_neighbors):
+            self.assertEqual(nodes[j][0].neighbors[1],expected,f"{j} failed with neighbors {nodes[j][0].neighbors}")
+
+        expected_down_neighbors = (False, True, *[False for _ in range(3)], True, *[False for _ in range(4)])
+        for j,expected in enumerate(expected_down_neighbors):
+            self.assertEqual(nodes[j][0].neighbors[6],expected,f"{j} failed with neighbors {nodes[j][0].neighbors}")
+
+    def test_neighbors_r_diag(self):
+        nodes = day11.gen_ferry_node_array(TestDay11.test_input)
+        # occupy left most column with a couple of people
+        # should resemble L L # L . L . # . L
+        nodes[2][2].occupy()
+        nodes[7][7].occupy()
+
+        day11.count_LOS_neighbors(nodes)
+        expected_r_diag_down_neighbors = (False, True, *[False for _ in range(3)], True, *[False for _ in range(4)])
+        for j,expected in enumerate(expected_r_diag_down_neighbors):
+            self.assertEqual(nodes[j][j].neighbors[7],expected,f"{j} failed with neighbors {nodes[j][0].neighbors}")
+
+        expected_r_diag_up_neighbors = (*[False for _ in range(3)], True, *[False for _ in range(5)], True)
+        for j,expected in enumerate(expected_r_diag_up_neighbors):
+            self.assertEqual(nodes[j][j].neighbors[0],expected,f"{j} failed with neighbors {nodes[j][j].neighbors}")
+
+    def test_neighbors_l_diag(self):
+        nodes = day11.gen_ferry_node_array(TestDay11.test_input)
+        # occupy left most column with a couple of people & right most column
+        # should resemble LL#LLL.#LL
+        nodes[2][0].occupy()
+        nodes[4][0].occupy()
+        nodes[3][-1].occupy()
+        nodes[5][-1].occupy()
+  
+
+        day11.count_LOS_neighbors(nodes)
+
+        expected_l_diag_down_neighbors = (False, True, False, True, *[False for _ in range(6)])
+        for j,expected in enumerate(expected_l_diag_down_neighbors):
+            self.assertEqual(nodes[j][1].neighbors[5], expected,f"{j} failed with neighbors {nodes[j][1].neighbors}")
+        
+        # checking the up right test
+        expected_l_diag_up_neighbors = (*[False for _ in range(4)], True, *[False for _ in range(5)])
+        for j,expected in enumerate(expected_l_diag_up_neighbors):
+            self.assertEqual(nodes[j][-2].neighbors[2], expected, f"{j} failed with neighbors {nodes[j][-2].neighbors}")
+
+        self.assertTrue(nodes[7][-3].neighbors[2])
+
+
+    def test_part_2(self):
+        nodes = day11.gen_ferry_node_array(TestDay11.test_input)
+        # count and update the neighbors and check the 1st row
+        day11.count_LOS_neighbors(nodes)
+        # expected output #######.##
+        expected_occupied = (*[True for _ in range(7)], False, True, True)
+        for j,(expected,actual) in enumerate(zip(expected_occupied,nodes[1])):
+            self.assertEqual(expected, actual.occupied,f"col {j} failed with neighbors {actual.neighbors}")
+        
+        # now update again and recheck, expect #LLLLLL.LL
+        day11.count_LOS_neighbors(nodes)
+        expected_occupied = (True, *[False for _ in range(9)])
+        for j,(expected,actual) in enumerate(zip(expected_occupied,nodes[1])):
+            self.assertEqual(expected, actual.occupied,f"col {j} failed with neighbors {actual.neighbors}")
+
+        # now loop until the output is stable
+        output_stable = False
+        while(not output_stable):
+            output_stable = not day11.count_LOS_neighbors(nodes)
+        self.assertEqual(day11.count_occupied_seats(nodes),26)
+
+        # now we check the function that does all this 
+        self.assertEqual(day11.part2(TestDay11.test_input),26)
+
+class TestDay12(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day12_test_input.txt"
+
+    def test_boat(self):
+        boat = day12.Boat()
+        # check that the direction initializes
+        self.assertEqual(boat._direction[0],1)
+        self.assertEqual(boat._direction[1],0)
+
+        # check rotation 
+        boat.move("L180")
+        self.assertTrue(np.all(boat._direction==[-1,0]))
+
+        boat.move("R180")
+        self.assertTrue(np.all(boat._direction==[1,0]))
+
+        boat.move("R90")
+        self.assertTrue(np.all(boat._direction==[0,-1]))
+
+        boat.move("F10")
+        self.assertTrue(np.all(boat._position==[0,-10]))
+        boat.move("R180")
+        boat.move("F10")
+        self.assertTrue(np.all(boat._position==[0,0]))
+
+        expected_positions = ((0,1),(0,0),(-1,0),(0,0))
+        for expected, direction in zip(expected_positions,"NSWE"):
+            boat.move(f"{direction}1")
+            self.assertTrue(np.all(boat._position==expected), f"Failed for moving {direction}")
+    
+    def test_part1(self):
+        test_answer = day12.part1(TestDay12.test_input)
+        self.assertEqual(test_answer,25)
+    
+    def test_part2(self):
+        test_answer = day12.part2(TestDay12.test_input)
+        self.assertEqual(test_answer,286)
 
 
 if __name__ == '__main__':

@@ -38,7 +38,7 @@
 </p>
 
 
-Day | Solutions    | 
+Week | Solutions    | 
 :--:|:---------:|
 1   | [:heavy_check_mark: :heavy_check_mark:][py-day1-url] |
 2   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url] |  
@@ -50,6 +50,11 @@ Day | Solutions    |
 8   | [:heavy_check_mark: :heavy_check_mark:][py-day8-url] |   
 9   | [:heavy_check_mark: :heavy_check_mark:][py-day9-url] |   
 10  | [:heavy_check_mark: :heavy_check_mark:][py-day10-url] |
+11   | [:heavy_check_mark: :heavy_check_mark:][py-day11-url] |
+12   | [:heavy_check_mark: :heavy_check_mark:][py-day12-url] |  
+13   | :x: :x: |   
+14   | :x: :x: |  
+15   | :x: :x: |  
 
 <!-- Links to Solution Days -->
 [py-day1-url]: py/aoc2020/day1.py
@@ -62,6 +67,8 @@ Day | Solutions    |
 [py-day8-url]: py/aoc2020/day8.py
 [py-day9-url]: py/aoc2020/day9.py
 [py-day10-url]: py/aoc2020/day10.py
+[py-day11-url]: py/aoc2020/day11.py
+[py-day12-url]: py/aoc2020/day12.py
 
 [cpp-day1-url]: cpp/src/day1.cpp
 
