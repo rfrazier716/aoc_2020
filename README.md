@@ -52,7 +52,7 @@ Week | Solutions    |
 10  | [:heavy_check_mark: :heavy_check_mark:][py-day10-url] |
 11   | [:heavy_check_mark: :heavy_check_mark:][py-day11-url] |
 12   | [:heavy_check_mark: :heavy_check_mark:][py-day12-url] |  
-13   | :x: :x: |   
+13   | [:heavy_check_mark: :heavy_check_mark:][py-day13-url]|   
 14   | :x: :x: |  
 15   | :x: :x: |  
 
@@ -69,6 +69,7 @@ Week | Solutions    |
 [py-day10-url]: py/aoc2020/day10.py
 [py-day11-url]: py/aoc2020/day11.py
 [py-day12-url]: py/aoc2020/day12.py
+[py-day13-url]: py/aoc2020/day13.py
 
 [cpp-day1-url]: cpp/src/day1.cpp
 
