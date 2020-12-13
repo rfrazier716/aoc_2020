@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13
 import numpy as np
 import networkx as nx
 
@@ -466,6 +466,28 @@ class TestDay12(unittest.TestCase):
     def test_part2(self):
         test_answer = day12.part2(TestDay12.test_input)
         self.assertEqual(test_answer,286)
+
+class TestDay13(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day13_test_input.txt" 
+    
+    def test_timetable_loading(self):
+        departure,timetable,gaps = day13.parse_puzzle_input(TestDay13.test_input)
+        self.assertEqual(departure,939)
+        self.assertTrue(np.all(timetable==[7,13,59,31,19]))
+        self.assertTrue(np.all(gaps == [1,3,2,1]))
+
+    def test_part1(self):
+        departure,timetable,_ = day13.parse_puzzle_input(TestDay13.test_input)
+        part1_answer = day13.part1(departure,timetable)
+        self.assertEqual(part1_answer, 295)
+
+    def test_part2(self):
+        departure,timetable, gaps = day13.parse_puzzle_input(TestDay13.test_input)
+        timetables = [day13.Timetable(0,x) for x in timetable] 
+        part2_answer = day13.part2(timetables, gaps)
+        self.assertEqual(part2_answer, 1068781)
 
 
 if __name__ == '__main__':
