@@ -1,7 +1,7 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13
-import numpy as np
-import networkx as nx
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13, day14
+#import numpy as np
+#import networkx as nx
 
 from pathlib import Path
 test_input_dir = Path(__file__).resolve().parent / "test_inputs"
@@ -488,6 +488,24 @@ class TestDay13(unittest.TestCase):
         timetables = [day13.Timetable(0,x) for x in timetable] 
         part2_answer = day13.part2(timetables, gaps)
         self.assertEqual(part2_answer, 1068781)
+
+class TestDay14(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day14_test_input.txt" 
+    
+    def test_bitmasker(self):
+        masker = day14.BitMasker()
+        with open(TestDay14.test_input) as fii:
+            for line in fii:
+                masker.update(line)
+                print(f"{masker._or_mask:36x}")
+                print(f"{masker._and_mask:36x}")
+                print(f"{11 | masker._or_mask:36x}")
+                print(11 & masker._and_mask )
+                print(masker.memory)
+        print(masker.memory)
+
 
 
 if __name__ == '__main__':
