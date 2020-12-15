@@ -62,20 +62,20 @@ Day | Solutions    |
 20   | :x: :x: |  
 
 <!-- Links to Solution Days -->
-[py-day1-url]: py/aoc2020/day1.py
-[py-day2-url]: py/aoc2020/day2.py
-[py-day3-url]: py/aoc2020/day3.py
-[py-day4-url]: py/aoc2020/day4.py
-[py-day5-url]: py/aoc2020/day5.py
-[py-day6-url]: py/aoc2020/day6.py
-[py-day7-url]: py/aoc2020/day7.py
-[py-day8-url]: py/aoc2020/day8.py
-[py-day9-url]: py/aoc2020/day9.py
-[py-day10-url]: py/aoc2020/day10.py
-[py-day11-url]: py/aoc2020/day11.py
-[py-day12-url]: py/aoc2020/day12.py
-[py-day13-url]: py/aoc2020/day13.py
-[py-day14-url]: py/aoc2020/day14.py
+[py-day1-url]: aoc2020/day1.py
+[py-day2-url]: aoc2020/day2.py
+[py-day3-url]: aoc2020/day3.py
+[py-day4-url]: aoc2020/day4.py
+[py-day5-url]: aoc2020/day5.py
+[py-day6-url]: aoc2020/day6.py
+[py-day7-url]: aoc2020/day7.py
+[py-day8-url]: aoc2020/day8.py
+[py-day9-url]: aoc2020/day9.py
+[py-day10-url]: aoc2020/day10.py
+[py-day11-url]: aoc2020/day11.py
+[py-day12-url]: aoc2020/day12.py
+[py-day13-url]: aoc2020/day13.py
+[py-day14-url]: aoc2020/day14.py
 
 <!-- PROJECT SHIELD Links -->
 [build-shield]: https://circleci.com/gh/rfrazier716/aoc_2020.svg?style=shield
