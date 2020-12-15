@@ -38,7 +38,7 @@
 </p>
 
 
-Week | Solutions    | 
+Day | Solutions    | 
 :--:|:---------:|
 1   | [:heavy_check_mark: :heavy_check_mark:][py-day1-url] |
 2   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url] |  
@@ -53,8 +53,13 @@ Week | Solutions    |
 11   | [:heavy_check_mark: :heavy_check_mark:][py-day11-url] |
 12   | [:heavy_check_mark: :heavy_check_mark:][py-day12-url] |  
 13   | [:heavy_check_mark: :heavy_check_mark:][py-day13-url]|   
-14   | :x: :x: |  
+14   | [:heavy_check_mark: :heavy_check_mark:][py-day14-url]|   
 15   | :x: :x: |  
+16   | :x: :x: |  
+17   | :x: :x: |  
+18   | :x: :x: |  
+19   | :x: :x: |  
+20   | :x: :x: |  
 
 <!-- Links to Solution Days -->
 [py-day1-url]: py/aoc2020/day1.py
@@ -70,8 +75,7 @@ Week | Solutions    |
 [py-day11-url]: py/aoc2020/day11.py
 [py-day12-url]: py/aoc2020/day12.py
 [py-day13-url]: py/aoc2020/day13.py
-
-[cpp-day1-url]: cpp/src/day1.cpp
+[py-day14-url]: py/aoc2020/day14.py
 
 <!-- PROJECT SHIELD Links -->
 [build-shield]: https://circleci.com/gh/rfrazier716/aoc_2020.svg?style=shield
