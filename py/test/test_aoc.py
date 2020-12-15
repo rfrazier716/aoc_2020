@@ -494,17 +494,23 @@ class TestDay14(unittest.TestCase):
     def setUpClass(cls):
         cls.test_input = test_input_dir / "day14_test_input.txt" 
     
-    def test_bitmasker(self):
-        masker = day14.BitMasker()
+    def test_part1(self):
+        part1_ans = day14.part1(TestDay14.test_input)
+        self.assertEqual(part1_ans,165)
+
+    def test_mem_bitmasker(self):
+        masker = day14.MemoryBitMasker()
         with open(TestDay14.test_input) as fii:
-            for line in fii:
-                masker.update(line)
-                print(f"{masker._or_mask:36x}")
-                print(f"{masker._and_mask:36x}")
-                print(f"{11 | masker._or_mask:36x}")
-                print(11 & masker._and_mask )
-                print(masker.memory)
-        print(masker.memory)
+            # first line should update the mask
+            masker.update(fii.readline())
+            self.assertEqual(len(masker._mask_toggle_indices),34)
+            self.assertTrue(1 not in masker._mask_toggle_indices)
+            self.assertTrue(6 not in masker._mask_toggle_indices)
+
+    def test_part_2(self):
+        part2_ans = day14.part2(test_input_dir / "day14_test_input2.txt")
+        self.assertEqual(part2_ans,208)
+
 
 
 
