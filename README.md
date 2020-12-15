@@ -40,21 +40,21 @@
 
 Day | Solutions    | 
 :--:|:---------:|
-1   | [:heavy_check_mark: :heavy_check_mark:][py-day1-url] |
-2   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url] |  
-3   | [:heavy_check_mark: :heavy_check_mark:][py-day3-url] |   
-4   | [:heavy_check_mark: :heavy_check_mark:][py-day4-url] |  
-5   | [:heavy_check_mark: :heavy_check_mark:][py-day5-url] |  
-6   |  [:heavy_check_mark: :heavy_check_mark:][py-day6-url]|  
-7   | [:heavy_check_mark: :heavy_check_mark:][py-day7-url] |   
-8   | [:heavy_check_mark: :heavy_check_mark:][py-day8-url] |   
-9   | [:heavy_check_mark: :heavy_check_mark:][py-day9-url] |   
-10  | [:heavy_check_mark: :heavy_check_mark:][py-day10-url] |
+01   | [:heavy_check_mark: :heavy_check_mark:][py-day1-url] |
+02   | [:heavy_check_mark: :heavy_check_mark:][py-day2-url] |  
+03   | [:heavy_check_mark: :heavy_check_mark:][py-day3-url] |   
+04   | [:heavy_check_mark: :heavy_check_mark:][py-day4-url] |  
+05   | [:heavy_check_mark: :heavy_check_mark:][py-day5-url] |  
+06   | [:heavy_check_mark: :heavy_check_mark:][py-day6-url]|  
+07   | [:heavy_check_mark: :heavy_check_mark:][py-day7-url] |   
+08   | [:heavy_check_mark: :heavy_check_mark:][py-day8-url] |   
+09   | [:heavy_check_mark: :heavy_check_mark:][py-day9-url] |   
+10   | [:heavy_check_mark: :heavy_check_mark:][py-day10-url] |
 11   | [:heavy_check_mark: :heavy_check_mark:][py-day11-url] |
 12   | [:heavy_check_mark: :heavy_check_mark:][py-day12-url] |  
 13   | [:heavy_check_mark: :heavy_check_mark:][py-day13-url]|   
 14   | [:heavy_check_mark: :heavy_check_mark:][py-day14-url]|   
-15   | :x: :x: |  
+15   | [:heavy_check_mark: :heavy_check_mark:][py-day15-url]|   
 16   | :x: :x: |  
 17   | :x: :x: |  
 18   | :x: :x: |  
@@ -76,6 +76,7 @@ Day | Solutions    |
 [py-day12-url]: aoc2020/day12.py
 [py-day13-url]: aoc2020/day13.py
 [py-day14-url]: aoc2020/day14.py
+[py-day15-url]: aoc2020/day15.py
 
 <!-- PROJECT SHIELD Links -->
 [build-shield]: https://circleci.com/gh/rfrazier716/aoc_2020.svg?style=shield
