@@ -1,0 +1,1 @@
+from aoc2020 import *
