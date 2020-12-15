@@ -1,7 +1,7 @@
 import unittest
 from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13, day14
-#import numpy as np
-#import networkx as nx
+import numpy as np
+import networkx as nx
 
 from pathlib import Path
 test_input_dir = Path(__file__).resolve().parent / "test_inputs"
@@ -215,7 +215,6 @@ class TestDay7(unittest.TestCase):
         with open(TestDay7.test_input) as fii:
             for line in fii:
                 day7.append_bags_to_graph(graph, day7.parse_bag_string(line))
-        print(list(nx.algorithms.dag.topological_sort(graph)))
 
     def test_part1_soln(self):
         graph = nx.DiGraph()
