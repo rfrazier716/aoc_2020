@@ -532,6 +532,15 @@ class TestDay16(unittest.TestCase):
         part1_answer = day16.part1(parser.other_tickets)
         self.assertEqual(part1_answer,71)
 
+    def test_ticket_solver(self):
+        parser = day16.PuzzleParser(test_input_dir / "day16_test_input2.txt")
+        all_solutions_matrix = np.array(
+            [ticket.field_validation_matrix for ticket in parser.other_tickets if ticket.is_valid()])
+        solver = day16.TicketSolver(parser.other_tickets)
+        solver.solve()
+        print(solver.ordered_fields)
+        print(parser.my_ticket.values)
+
 
 if __name__ == '__main__':
     unittest.main()

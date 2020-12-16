@@ -3,6 +3,7 @@ from collections import namedtuple
 import enum
 import numpy as np
 from pathlib import Path
+import copy
 
 # make a ticket field object that holds the field name and function to validete
 TicketField = namedtuple("PuzzleRule",["name","fn"])
@@ -24,6 +25,10 @@ class Ticket(object):
     @classmethod
     def update_ticket_fields(cls, field_array):
         cls.ticket_fields = field_array
+
+    @property
+    def field_validation_matrix(self):
+        return self._field_validation_matrix
 
     def _fill_matrix(self):
         # apply the rules on the input values
@@ -47,6 +52,11 @@ class Ticket(object):
         returns the sum of invalid fields
         """
         return np.sum(self._field_values[np.logical_not(self._get_valid_fields())])
+
+    @property
+    def values(self):
+        return self._field_values
+
 
 def rule_validation_generator(min_1, max_1, min_2, max_2):
     """
@@ -123,6 +133,33 @@ class PuzzleParser(object):
     def other_tickets(self):
         return self._other_tickets
 
+class TicketSolver(object):
+    def __init__(self, tickets):
+        self._ticket_possibilities = np.all(np.array([ticket.field_validation_matrix for ticket in tickets if ticket.is_valid()]),axis=0).T
+        self._ordered_fields = {}
+
+    def _check_unique_rows(self):
+        """
+        looks at each row (which is a rule) and see if any row has an entry that only one value satisfies
+        """
+        for j,row in enumerate(self._ticket_possibilities):
+            if np.sum(row) == 1:
+                #the field index is the position of the true value
+                field_index = np.where(row)[0][0]
+                self._ordered_fields[Ticket.ticket_fields[j].name] = field_index
+                # now blank out that whole row because no other tickets can have that field
+                self._ticket_possibilities[:, field_index] = np.zeros(self._ticket_possibilities.shape[0])
+
+    def solve(self):
+        # until we've eliminated every option, keep checking if rows are unique
+        while np.sum(self._ticket_possibilities!=0):
+            self._check_unique_rows()
+
+    @property
+    def ordered_fields(self):
+        return self._ordered_fields
+
+
 
 def part1(other_tickets):
     total_sum = 0
@@ -131,9 +168,26 @@ def part1(other_tickets):
             total_sum += ticket.invalid_sum()
     return total_sum
 
+def part2(parser):
+    # Load the other tickets into the solver and run
+    solver = TicketSolver(parser.other_tickets)
+    solver.solve()
+    # the the ticket value for every field with "Departure" in it
+    departure_indices = [value for key, value in solver.ordered_fields.items() if "departure" in key]
+    values_to_mul = parser.my_ticket.values[departure_indices]
+    # have to do product this way because numpy overflows
+    product = 1
+    for val in values_to_mul:
+        product *= int(val)
+    return product
+
+
+
 
 if __name__ == "__main__":
     input_file = Path(__file__).resolve().parents[1] / "inputs" / "day16.txt"
     parser = PuzzleParser(input_file)
     part1_soln = part1(parser.other_tickets)
     print(f"part 1 solution: {part1_soln}")
+    part2_soln = part2(parser)
+    print(f"part 2 solution: {part2_soln}")
