@@ -1,5 +1,6 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13, day14
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13, day14, day16
+import aoc2020
 import numpy as np
 import networkx as nx
 
@@ -510,7 +511,26 @@ class TestDay14(unittest.TestCase):
         part2_ans = day14.part2(test_input_dir / "day14_test_input2.txt")
         self.assertEqual(part2_ans,208)
 
+class TestDay16(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.test_input = test_input_dir / "day16_test_input.txt" 
 
+    def test_parser(self):
+        parser = day16.PuzzleParser(TestDay16.test_input)
+        # parser should set the ticket class to have 3 ticket field functions
+        self.assertEqual(len(day16.Ticket.ticket_fields),3)
+        self.assertTrue(np.all(parser.my_ticket._field_validation_matrix[0] == [True, True, False]))
+
+        # check that the validation function works
+        expected_output = [True, False, False, False]
+        for j,(expected, actual) in enumerate(zip(expected_output, parser.other_tickets)):
+            self.assertEqual(expected,actual.is_valid(),f"ticket {j} failed with matrix \n {actual._field_validation_matrix}")
+
+    def test_part1(self):
+        parser = day16.PuzzleParser(TestDay16.test_input)
+        part1_answer = day16.part1(parser.other_tickets)
+        self.assertEqual(part1_answer,71)
 
 
 if __name__ == '__main__':
