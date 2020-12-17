@@ -1,5 +1,5 @@
 import unittest
-from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13, day14, day16
+from aoc2020 import day1,day2,day3,day4,day5,day6,day7, day8, day9,day10, day11, day12, day13, day14, day16, day17
 import aoc2020
 import numpy as np
 import networkx as nx
@@ -541,6 +541,14 @@ class TestDay16(unittest.TestCase):
         print(solver.ordered_fields)
         print(parser.my_ticket.values)
 
+class TestDay17(unittest.TestCase):
+
+    def test_node_creation(self):
+        this_node = day17.Node(None,(0,0,0),True)
+        self.assertEqual(len(this_node.neighbors),26)
+        # check that a couple key values are in neighbors
+        self.assertFalse((0,0,0) in this_node.neighbors)
+        self.assertTrue((-1,0,0) in this_node.neighbors)
 
 if __name__ == '__main__':
     unittest.main()
