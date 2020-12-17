@@ -56,7 +56,7 @@ Day | Solutions    |
 14   | [:heavy_check_mark: :heavy_check_mark:][py-day14-url]|   
 15   | [:heavy_check_mark: :heavy_check_mark:][py-day15-url]|   
 16   | [:heavy_check_mark: :heavy_check_mark:][py-day16-url]|   
-17   | :x: :x: |  
+17   | [:heavy_check_mark: :heavy_check_mark:][py-day17-url]|   
 18   | :x: :x: |  
 19   | :x: :x: |  
 20   | :x: :x: |  
@@ -78,6 +78,7 @@ Day | Solutions    |
 [py-day14-url]: aoc2020/day14.py
 [py-day15-url]: aoc2020/day15.py
 [py-day16-url]: aoc2020/day16.py
+[py-day17-url]: aoc2020/day17.py
 
 <!-- PROJECT SHIELD Links -->
 [build-shield]: https://circleci.com/gh/rfrazier716/aoc_2020.svg?style=shield
