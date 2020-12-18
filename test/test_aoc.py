@@ -1,6 +1,6 @@
 import unittest
 from aoc2020 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day16, \
-    day17
+    day17, day18
 import aoc2020
 import numpy as np
 import networkx as nx
@@ -593,6 +593,24 @@ class TestDay17(unittest.TestCase):
 
         # a node from this netherworld should have 80 neighbors
         self.assertEqual(len(netherworld.nodes[(1,0,0,0)].neighbors),80)
+
+class TestDay18(unittest.TestCase):
+
+
+    def test_new_math(self):
+        """
+        make sure that new math on a flattened string returns the right value
+        """
+        self.assertEqual(day18.new_math("3+4"),7)
+        self.assertEqual(day18.new_math("1 + 2 * 3 + 4 * 5 + 6"), 71)
+
+    def test_new_math_with_priority(self):
+        """
+        make sure priority execution works when you evaluate addition first
+        """
+        self.assertEqual(day18.parse_math_string("1 + (2 * 3) + (4 * (5 + 6)) ",day18.new_math_with_priority), 51)
+        self.assertEqual(day18.parse_math_string("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2 ",day18.new_math_with_priority), 23340)
+
 
 
 
