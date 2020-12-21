@@ -58,7 +58,7 @@ Day | Solutions    |
 16   | [:heavy_check_mark: :heavy_check_mark:][py-day16-url]|   
 17   | [:heavy_check_mark: :heavy_check_mark:][py-day17-url]|   
 18   | [:heavy_check_mark: :heavy_check_mark:][py-day18-url]|   
-19   | :x: :x: |  
+19   | [:heavy_check_mark: :heavy_check_mark:](aoc2020/day19.py)|   
 20   | :x: :x: |  
 
 <!-- Links to Solution Days -->

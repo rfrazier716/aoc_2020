@@ -1,10 +1,10 @@
 import unittest
 from aoc2020 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day16, \
-    day17, day18
+    day17, day18, day19
 import aoc2020
 import numpy as np
 import networkx as nx
-
+import re
 from pathlib import Path
 
 test_input_dir = Path(__file__).resolve().parent / "test_inputs"
@@ -610,6 +610,46 @@ class TestDay18(unittest.TestCase):
         """
         self.assertEqual(day18.parse_math_string("1 + (2 * 3) + (4 * (5 + 6)) ",day18.new_math_with_priority), 51)
         self.assertEqual(day18.parse_math_string("((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2 ",day18.new_math_with_priority), 23340)
+
+
+class TestDay19(unittest.TestCase):
+
+    def test_puzzle_parser(self):
+        parser = day19.PuzzleParser(test_input_dir / "day19_test_input.txt")
+        print(parser.rules['0'])
+    
+    def test_part1(self):
+        parser = day19.PuzzleParser(test_input_dir / "day19_test_input.txt")
+        print([re.match(parser.rules['0'], line) for line in parser.inputs])
+        n_correct = day19.part1(parser)
+        self.assertEqual(n_correct, 2)
+
+    def test_part2(self):
+        parser = day19.PuzzleParser(test_input_dir / "day19_test_input2.txt")
+        part2_ans = day19.part2(parser)
+        self.assertEqual(part2_ans, 12)
+
+        matches = day19.part2_matches(parser)
+        expected_matches = [
+            "bbabbbbaabaabba",
+            "babbbbaabbbbbabbbbbbaabaaabaaa",
+            "aaabbbbbbaaaabaababaabababbabaaabbababababaaa",
+            "bbbbbbbaaaabbbbaaabbabaaa",
+            "bbbababbbbaaaaaaaabbababaaababaabab",
+            "ababaaaaaabaaab",
+            "ababaaaaabbbaba",
+            "baabbaaaabbaaaababbaababb",
+            "abbbbabbbbaaaababbbbbbaaaababb",
+            "aaaaabbaabaaaaababaa",
+            "aaaabbaabbaaaaaaabbbabbbaaabbaabaaa",
+            "aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba"
+        ]
+        for match in matches:
+            print(match)
+            self.assertTrue(match in expected_matches)
+        
+        for match in expected_matches:
+            self.assertTrue(match in matches,f"{match}")
 
 
 
