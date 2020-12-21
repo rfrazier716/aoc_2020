@@ -1,6 +1,6 @@
 import unittest
 from aoc2020 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day16, \
-    day17, day18, day19
+    day17, day18, day19, day21
 import aoc2020
 import numpy as np
 import networkx as nx
@@ -651,6 +651,21 @@ class TestDay19(unittest.TestCase):
         for match in expected_matches:
             self.assertTrue(match in matches,f"{match}")
 
+class TestDay21(unittest.TestCase):
+
+    def test_parser(self):
+        parser = day21.PuzzleParser(test_input_dir / "day21_test_input.txt")
+        print(parser.allergens)
+        self.assertEqual(len(parser.allergens), 3)
+        self.assertEqual(len(parser.ingredients), 7)
+        self.assertEqual(len(parser.foodstuffs), 4)
+
+        print(parser.pairings)
+
+    def test_part1(self):
+        parser = day21.PuzzleParser(test_input_dir / "day21_test_input.txt")
+        part1_answer = day21.part1(parser)
+        self.assertEqual(part1_answer, 5)
 
 
 

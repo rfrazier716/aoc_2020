@@ -60,6 +60,13 @@ Day | Solutions    |
 18   | [:heavy_check_mark: :heavy_check_mark:][py-day18-url]|   
 19   | [:heavy_check_mark: :heavy_check_mark:](aoc2020/day19.py)|   
 20   | :x: :x: |  
+21   | [:heavy_check_mark: :heavy_check_mark:](aoc2020/day21.py)|   
+22   | :x: :x: |  
+23   | :x: :x: |  
+24   | :x: :x: |  
+25   | :x: :x: |  
+
+
 
 <!-- Links to Solution Days -->
 [py-day1-url]: aoc2020/day1.py
