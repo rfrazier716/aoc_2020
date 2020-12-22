@@ -78,7 +78,7 @@ def part2_matches(parser):
         if match:
             n_42 = len(re.findall(parser.rules['42'], match.group(1)))
             n_31 = len(re.findall(parser.rules['31'], match.group(2)))
-            print(f"{n_42},{n_31}\t{line}")
+            # print(f"{n_42},{n_31}\t{line}")
             if n_42>n_31:
                 lines.append(line)
     return lines

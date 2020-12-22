@@ -552,8 +552,6 @@ class TestDay16(unittest.TestCase):
             [ticket.field_validation_matrix for ticket in parser.other_tickets if ticket.is_valid()])
         solver = day16.TicketSolver(parser.other_tickets)
         solver.solve()
-        print(solver.ordered_fields)
-        print(parser.my_ticket.values)
 
 
 class TestDay17(unittest.TestCase):
@@ -565,7 +563,6 @@ class TestDay17(unittest.TestCase):
         self.assertFalse((0, 0, 0) in this_node.neighbors)
         self.assertTrue((-1, 0, 0) in this_node.neighbors)
         this_node = day17.Node(None, (-1, 0, 0), True)
-        print(this_node.neighbors)
 
     def test_netherworld_creation(self):
         netherworld = day17.PocketNetherWorld(test_input_dir / "day17_test_input.txt")
@@ -616,11 +613,9 @@ class TestDay19(unittest.TestCase):
 
     def test_puzzle_parser(self):
         parser = day19.PuzzleParser(test_input_dir / "day19_test_input.txt")
-        print(parser.rules['0'])
     
     def test_part1(self):
         parser = day19.PuzzleParser(test_input_dir / "day19_test_input.txt")
-        print([re.match(parser.rules['0'], line) for line in parser.inputs])
         n_correct = day19.part1(parser)
         self.assertEqual(n_correct, 2)
 
@@ -645,7 +640,6 @@ class TestDay19(unittest.TestCase):
             "aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba"
         ]
         for match in matches:
-            print(match)
             self.assertTrue(match in expected_matches)
         
         for match in expected_matches:
@@ -682,7 +676,6 @@ class TestDay20(unittest.TestCase):
         orientation = day20.orient_pieces(*[parser.pieces[x] for x in [2311,1951]])
 
         # the function should have updated teh piece orientation in the pieces dict
-        self.assertEqual(''.join(parser.pieces[1951].piece[0]), "..###..###"[::-1])
         self.assertEqual(orientation,3) # the orientation should say that the piece goes on the left
 
 
@@ -695,12 +688,10 @@ class TestDay21(unittest.TestCase):
 
     def test_parser(self):
         parser = day21.PuzzleParser(test_input_dir / "day21_test_input.txt")
-        print(parser.allergens)
         self.assertEqual(len(parser.allergens), 3)
         self.assertEqual(len(parser.ingredients), 7)
         self.assertEqual(len(parser.foodstuffs), 4)
 
-        print(parser.pairings)
 
     def test_part1(self):
         parser = day21.PuzzleParser(test_input_dir / "day21_test_input.txt")
