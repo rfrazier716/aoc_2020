@@ -1,6 +1,6 @@
 import unittest
 from aoc2020 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day16, \
-    day17, day18, day19, day20, day21
+    day17, day18, day19, day20, day21, day22
 import aoc2020
 import numpy as np
 import networkx as nx
@@ -678,12 +678,6 @@ class TestDay20(unittest.TestCase):
         # the function should have updated teh piece orientation in the pieces dict
         self.assertEqual(orientation,3) # the orientation should say that the piece goes on the left
 
-
-
-
-
-
-
 class TestDay21(unittest.TestCase):
 
     def test_parser(self):
@@ -698,8 +692,61 @@ class TestDay21(unittest.TestCase):
         part1_answer = day21.part1(parser)
         self.assertEqual(part1_answer, 5)
 
+class TestDay22(unittest.TestCase):
+    def test_parser(self):
+        parser = day22.PuzzleParser(test_input_dir / "day22_test_input.txt")
+        deck1,deck2 = parser.decks
+        expected_cards = [9, 2, 6, 3, 1]
+        for expected,actual in zip(expected_cards, deck1):
+            self.assertEqual(expected,actual)
 
+        expected_cards = [5, 8, 4, 7, 10]
+        for expected,actual in zip(expected_cards, deck2):
+            self.assertEqual(expected,actual)
 
+    def test_autocombat(self):
+        parser = day22.PuzzleParser(test_input_dir / "day22_test_input.txt")
+        card_player = day22.AutoCombat(*parser.decks)
+        card_player.play_game()
+        # after a game player 1 should have no cards and player 2 should have all
+        expected_cards = [3, 2, 10, 6, 8, 5, 9, 4, 7, 1]
+        for expected,actual in zip(expected_cards, card_player.decks[1]):
+            self.assertEqual(expected,actual)
+
+        self.assertEqual(card_player.winner,2)
+
+    def test_recursive_combat(self):
+        parser = day22.PuzzleParser(test_input_dir / "day22_test_input.txt")
+        card_player = day22.RecursiveCombat(*parser.decks,verbose = True)
+        [card_player.turn() for _ in range(8)] # play the first 8 turns because nothing eventful happens
+        card_player.turn() # this turn should trigger recusion and P2 should win
+        expected_p2 = [10, 1, 7, 6, 3, 4]
+        for expected,actual in zip(expected_p2, card_player.decks[1]):
+            self.assertEqual(expected,actual)
+        
+        # now play out the rest of the game
+        card_player.play_game()
+        self.assertEqual(card_player.winner,2)
+        self.assertEqual(card_player.calculate_scores()[1],291)
+    
+    def test_infinite_recusion_prevention(self):
+        parser = day22.PuzzleParser(test_input_dir / "day22_test_input2.txt")
+        card_player = day22.RecursiveCombat(*parser.decks,verbose = True)
+        card_player.play_game()
+        self.assertEqual(card_player.winner,1)
+        # after a game player 1 should have no cards and player 2 should have all
+        
+    def test_part1(self):
+        parser = day22.PuzzleParser(test_input_dir / "day22_test_input.txt")
+        high_score = day22.part1(parser)
+        self.assertEqual(high_score, 306)
+    
+    def test_part2(self):
+        parser = day22.PuzzleParser(test_input_dir / "day22_test_input.txt")
+        high_score = day22.part2(parser)
+        self.assertEqual(high_score, 291)
+
+        
 
 if __name__ == '__main__':
     unittest.main()
