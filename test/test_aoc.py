@@ -1,6 +1,6 @@
 import unittest
 from aoc2020 import day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day16, \
-    day17, day18, day19, day21
+    day17, day18, day19, day20, day21
 import aoc2020
 import numpy as np
 import networkx as nx
@@ -650,6 +650,46 @@ class TestDay19(unittest.TestCase):
         
         for match in expected_matches:
             self.assertTrue(match in matches,f"{match}")
+
+
+class TestDay20(unittest.TestCase):
+    def test_parser(self):
+        parser = day20.PuzzleParser(test_input_dir / "day20_test_input.txt")
+        self.assertEqual(len(parser.pieces.keys()),9)
+        self.assertEqual(''.join(parser.pieces[2311].piece[0]),"..##.#..#.")
+
+    def test_assembler(self):
+        parser = day20.PuzzleParser(test_input_dir / "day20_test_input.txt")
+        assembler = day20.PuzzleAssembler(parser.pieces,False) # don't pad the puzzle
+        graph = assembler.graph 
+        self.assertEqual(graph.number_of_edges(),12) # should be 12 edges total
+        # 4 pieces should have two edges
+        # 4 pieces should have three edges
+        # one piece shoudl have 4 edges
+        degrees = [d for n,d in graph.degree()] 
+        n_edges = [0,0,0]
+        for degree in degrees:
+            n_edges[degree-2] +=1
+        
+        self.assertEqual(n_edges[0],4)
+        self.assertEqual(n_edges[1],4)
+        self.assertEqual(n_edges[2],1)
+
+        # the full puzzle should be 24x24 pixels
+    
+    def test_orientation_fn(self):
+        parser = day20.PuzzleParser(test_input_dir / "day20_test_input.txt")
+        orientation = day20.orient_pieces(*[parser.pieces[x] for x in [2311,1951]])
+
+        # the function should have updated teh piece orientation in the pieces dict
+        self.assertEqual(''.join(parser.pieces[1951].piece[0]), "..###..###"[::-1])
+        self.assertEqual(orientation,3) # the orientation should say that the piece goes on the left
+
+
+
+
+
+
 
 class TestDay21(unittest.TestCase):
 

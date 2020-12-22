@@ -59,7 +59,7 @@ Day | Solutions    |
 17   | [:heavy_check_mark: :heavy_check_mark:][py-day17-url]|   
 18   | [:heavy_check_mark: :heavy_check_mark:][py-day18-url]|   
 19   | [:heavy_check_mark: :heavy_check_mark:](aoc2020/day19.py)|   
-20   | :x: :x: |  
+20   | [:heavy_check_mark: :heavy_check_mark:](aoc2020/day20.py)|   
 21   | [:heavy_check_mark: :heavy_check_mark:](aoc2020/day21.py)|   
 22   | :x: :x: |  
 23   | :x: :x: |  
